@@ -1,5 +1,4 @@
 --extra-index-url https://shimwell.github.io/wheels
-moab
 openmc
 cadquery
 jupyterlab
@@ -16,7 +15,7 @@ openmc_depletion_plotter
 openmc_data_downloader
 openmc_data
 dagmc_geometry_slice_plotter
-cad_to_dagmc>=0.9.5
+cad_to_dagmc>=0.11.1
 openmc-plasma-source
 openmc_regular_mesh_plotter
 neutronics_material_maker[density]
