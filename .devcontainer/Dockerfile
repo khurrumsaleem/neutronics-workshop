@@ -82,9 +82,11 @@ ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 RUN pip install --upgrade pip
 
 COPY requirements.txt requirements.txt
+COPY postBuild postBuild
 
 # python packages from the neutronics workflow
 RUN pip install -r requirements.txt
+
 
 
 ENV DISPLAY=:99
@@ -113,21 +115,7 @@ WORKDIR ${HOME}/tasks
 
 RUN echo ${HOME}
 
-RUN mkdir -p ~/nuclear_data
-
-# Download and extract ENDF/b 8.0 chain file
-RUN download_endf_chain -r b8.0 -d ~/nuclear_data -f chain-endf-b8.0.xml
-
-# Download and extract ENDF/b 8.0 cross section files
-RUN wget -q -O - https://anl.box.com/shared/static/uhbxlrx7hvxqw27psymfbhi7bx7s6u6a.xz | tar -C ~/nuclear_data -xJ  && \
-    mv ~/nuclear_data/endfb-viii.0-hdf5/* ~/nuclear_data && \
-    rm -rf ~/nuclear_data/endfb-viii.0-hdf5
-
-
-# Download and extract WMP Library
-RUN wget https://github.com/mit-crpg/WMP_Library/releases/download/v1.1/WMP_Library_v1.1.tar.gz -O ~/nuclear_data/WMP_Library_v1.1.tar.gz  && \
-    tar -xzf ~/nuclear_data/WMP_Library_v1.1.tar.gz -C ~/nuclear_data && \
-    rm ~/nuclear_data/WMP_Library_v1.1.tar.gz
+RUN bash postBuild
 
 # Copy over the local repository files
 COPY tasks ${HOME}/tasks/
