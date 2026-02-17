@@ -83,8 +83,10 @@ RUN pip install --upgrade pip
 
 COPY requirements.txt requirements.txt
 
+
 # python packages from the neutronics workflow
 RUN pip install -r requirements.txt
+
 
 
 ENV DISPLAY=:99
@@ -109,25 +111,14 @@ RUN mkdir -p ${HOME}/tasks && \
     chown -R ${NB_UID}:${NB_UID} ${HOME}/tasks && \
     chmod -R u+rwx ${HOME}/tasks
 
+
+COPY postBuild postBuild
+RUN bash postBuild
+
 WORKDIR ${HOME}/tasks
 
 RUN echo ${HOME}
 
-RUN mkdir -p ~/nuclear_data
-
-# Download and extract ENDF/b 8.0 chain file
-RUN download_endf_chain -r b8.0 -d ~/nuclear_data -f chain-endf-b8.0.xml
-
-# Download and extract ENDF/b 8.0 cross section files
-RUN wget -q -O - https://anl.box.com/shared/static/uhbxlrx7hvxqw27psymfbhi7bx7s6u6a.xz | tar -C ~/nuclear_data -xJ  && \
-    mv ~/nuclear_data/endfb-viii.0-hdf5/* ~/nuclear_data && \
-    rm -rf ~/nuclear_data/endfb-viii.0-hdf5
-
-
-# Download and extract WMP Library
-RUN wget https://github.com/mit-crpg/WMP_Library/releases/download/v1.1/WMP_Library_v1.1.tar.gz -O ~/nuclear_data/WMP_Library_v1.1.tar.gz  && \
-    tar -xzf ~/nuclear_data/WMP_Library_v1.1.tar.gz -C ~/nuclear_data && \
-    rm ~/nuclear_data/WMP_Library_v1.1.tar.gz
 
 # Copy over the local repository files
 COPY tasks ${HOME}/tasks/
@@ -151,8 +142,7 @@ RUN cp ${HOME}/tasks/task_01_cross_sections/1_isotope_xs_plot.ipynb ${HOME}/task
     cp ${HOME}/tasks/task_14_variance_reduction/2_shielded_room_single_ww.ipynb ${HOME}/tasks/half-day-workshop/task_15_example_variane_shielded_room_ww_single_iteration.ipynb && \
     cp ${HOME}/tasks/task_14_variance_reduction/3_sphere_iterative_per_run_ww.ipynb ${HOME}/tasks/half-day-workshop/task_16_example_variance_reduction_sphere_ww_multiple_iterations.ipynb && \
     cp ${HOME}/tasks/task_10_activation_transmutation_depletion/3_full_pulse_schedule.ipynb ${HOME}/tasks/half-day-workshop/task_17_full_pulse_schedule.ipynb && \
-    cp ${HOME}/tasks/task_21_design_task/1_optimal_design.ipynb ${HOME}/tasks/half-day-workshop/task_18_optimal_design.ipynb  && \
-    cp ${HOME}/tasks/task_21_design_task/1_optimal_design_with_hints.ipynb ${HOME}/tasks/half-day-workshop/task_18_optimal_designs_with_hints.ipynb 
+    cp ${HOME}/tasks/task_21_design_task/1_optimal_design.ipynb ${HOME}/tasks/half-day-workshop/task_18_optimal_design.ipynb
 
 RUN chown -R ${NB_UID}:${NB_UID} /root
 RUN chown -R ${NB_UID}:${NB_UID} ${HOME}/tasks
