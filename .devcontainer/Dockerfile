@@ -81,57 +81,10 @@ ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
 RUN pip install --upgrade pip
 
+COPY requirements.txt requirements.txt
+
 # python packages from the neutronics workflow
-RUN pip install neutronics_material_maker[density] \
-                # coolprop \  failing to find 
-                # stl_to_h5m \  failing to find 
-                # remove_dagmc_tags \  failing to find 
-                openmc-tally-unit-converter \
-                regular_mesh_plotter \
-                spectrum_plotter \
-                # openmc_source_plotter \  failing to find 
-                openmc_depletion_plotter \
-                "openmc_data_downloader>=0.6.0" \
-                retry \
-                "openmc_data>=0.2.10" \
-                openmc_plot \
-                dagmc_geometry_slice_plotter \
-                "cad_to_dagmc>=0.9.0" \
-                "openmc-plasma-source>=0.3.1" \
-                paramak --no-deps \
-                mpmath \
-                sympy \
-                asteval \
-                # pyvist \ # TODO add in pyvist but check it doesn't break the vtk/cad vis
-                gmsh \
-                pint \
-                # 6.5.3-5 nbconvert is needed to avoid an error and that requires trixie debian OS
-                # https://salsa.debian.org/python-team/packages/nbconvert/-/tags
-                # https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=1068349
-                lxml[html_clean]
-
-
-RUN pip install git+https://github.com/svalinn/pydagmc
-
-# Python libraries used in the workshop
-RUN pip install plotly \
-                # vtk \
-                itkwidgets \
-                pytest \
-                ipywidgets \
-                # cython is needed for moab and openmc, specific version tagged to avoid build errors
-                "cython<3.0" \
-                jupyterlab \
-                jupyter-cadquery
-
-# temporary wheels for moab hosted on github repo https://github.com/shimwell/wheels
-RUN pip install https://github.com/shimwell/wheels/raw/refs/heads/main/moab/moab-wheels-ubuntu-latest/moab-5.5.1-cp311-cp311-manylinux_2_28_x86_64.whl  && \
-    # temporary wheels for openmc hosted on github repo https://github.com/shimwell/wheels
-    pip install https://github.com/shimwell/wheels/raw/refs/heads/main/openmc/openmc-0.15.3-cp311-cp311-manylinux_2_28_x86_64.whl && \
-    # the order of these install appears to matter when it comes to jupyter vtk rendering
-    pip install cadquery-vtk && \
-    pip install git+https://github.com/CadQuery/cadquery.git@7cade87e68f2755fe7a121d797428c7b3d41b1be && \
-    pip install pyvista panel trame-vtk trame ipywidgets itkwidgets
+RUN pip install -r requirements.txt
 
 
 ENV DISPLAY=:99
@@ -205,8 +158,6 @@ RUN chown -R ${NB_UID}:${NB_UID} /root
 RUN chown -R ${NB_UID}:${NB_UID} ${HOME}/tasks
 
 USER ${NB_USER}
-
-
 
 # could switch to --ip='*'
 CMD ["jupyter", "lab", "--notebook-dir=/home/jovyan/tasks", "--port=8888", "--no-browser", "--ip=0.0.0.0", "--allow-root"]
