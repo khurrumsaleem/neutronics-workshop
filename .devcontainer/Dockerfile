@@ -82,7 +82,7 @@ ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 RUN pip install --upgrade pip
 
 COPY requirements.txt requirements.txt
-COPY postBuild postBuild
+
 
 # python packages from the neutronics workflow
 RUN pip install -r requirements.txt
@@ -111,11 +111,14 @@ RUN mkdir -p ${HOME}/tasks && \
     chown -R ${NB_UID}:${NB_UID} ${HOME}/tasks && \
     chmod -R u+rwx ${HOME}/tasks
 
+
+COPY postBuild postBuild
+RUN bash postBuild
+
 WORKDIR ${HOME}/tasks
 
 RUN echo ${HOME}
 
-RUN bash postBuild
 
 # Copy over the local repository files
 COPY tasks ${HOME}/tasks/
@@ -139,8 +142,7 @@ RUN cp ${HOME}/tasks/task_01_cross_sections/1_isotope_xs_plot.ipynb ${HOME}/task
     cp ${HOME}/tasks/task_14_variance_reduction/2_shielded_room_single_ww.ipynb ${HOME}/tasks/half-day-workshop/task_15_example_variane_shielded_room_ww_single_iteration.ipynb && \
     cp ${HOME}/tasks/task_14_variance_reduction/3_sphere_iterative_per_run_ww.ipynb ${HOME}/tasks/half-day-workshop/task_16_example_variance_reduction_sphere_ww_multiple_iterations.ipynb && \
     cp ${HOME}/tasks/task_10_activation_transmutation_depletion/3_full_pulse_schedule.ipynb ${HOME}/tasks/half-day-workshop/task_17_full_pulse_schedule.ipynb && \
-    cp ${HOME}/tasks/task_21_design_task/1_optimal_design.ipynb ${HOME}/tasks/half-day-workshop/task_18_optimal_design.ipynb  && \
-    cp ${HOME}/tasks/task_21_design_task/1_optimal_design_with_hints.ipynb ${HOME}/tasks/half-day-workshop/task_18_optimal_designs_with_hints.ipynb 
+    cp ${HOME}/tasks/task_21_design_task/1_optimal_design.ipynb ${HOME}/tasks/half-day-workshop/task_18_optimal_design.ipynb
 
 RUN chown -R ${NB_UID}:${NB_UID} /root
 RUN chown -R ${NB_UID}:${NB_UID} ${HOME}/tasks
