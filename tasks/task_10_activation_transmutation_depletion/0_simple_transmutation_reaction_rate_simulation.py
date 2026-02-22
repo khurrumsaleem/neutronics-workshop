@@ -42,7 +42,7 @@ rr_tally.scores = reactions
 tallies = openmc.Tallies([rr_tally])
 
 # builds the model and runs it
-model = openmc.model.Model(geometry, materials, settings, tallies)
+model = openmc.Model(geometry, materials, settings, tallies)
 sp_filename = model.run()
 
 # gets the simulation results
