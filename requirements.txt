@@ -3,7 +3,6 @@ openmc
 cadquery
 jupyterlab
 paramak
-remove_dagmc_tags
 pyvista[jupyter]
 pytest
 nbformat
