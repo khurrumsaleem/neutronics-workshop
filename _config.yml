@@ -2,7 +2,7 @@
 # Learn more at https://jupyterbook.org/customize/config.html
 
 title: Fusion Energy Neutronics Workshop
-author: Jon Shimwell
+author: Jonathan Shimwell
 logo: docs/logo.png
 
 # Force re-execution of notebooks on each build.
