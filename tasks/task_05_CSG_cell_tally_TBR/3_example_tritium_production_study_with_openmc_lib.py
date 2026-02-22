@@ -81,7 +81,7 @@ tbr_tally.scores = ['H3-production']  # Could also use '(n,Xt)' where X is a wil
 my_tallies = openmc.Tallies([tbr_tally])
 
 # RUN OPENMC
-model = openmc.model.Model(my_geometry, my_materials, my_settings, my_tallies)
+model = openmc.Model(my_geometry, my_materials, my_settings, my_tallies)
 
 model.export_to_model_xml()
 

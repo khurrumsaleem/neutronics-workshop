@@ -95,7 +95,7 @@ time_tally.filters = [time_filter, cell_filter]
 my_tallies = openmc.Tallies(time_tally)
 
 
-model = openmc.model.Model(my_geometry, my_materials, my_settings, my_tallies)
+model = openmc.Model(my_geometry, my_materials, my_settings, my_tallies)
 
 sp_filename = model.run()
 
