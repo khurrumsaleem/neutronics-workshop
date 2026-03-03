@@ -251,8 +251,8 @@ plot_data = [
     [xz_slice(si_n),  xz_slice(si_p),  xz_slice(si_total)],
 ]
 titles = [
-    ['Biological neutron (Sv/s)', 'Biological photon (Sv/s)', 'Biological total (Sv/s)'],
-    ['Silicon neutron (Gy/s)',    'Silicon photon (Gy/s)',    'Silicon total (Gy/s)'],
+    ['Biological dose neutron (Sv/s)', 'Biological dose photon (Sv/s)', 'Biological dose total (Sv/s)'],
+    ['Silicon dose neutron (Gy/s)',    'Silicon dose photon (Gy/s)',    'Silicon dose total (Gy/s)'],
 ]
 units = ['Sv/s', 'Sv/s', 'Sv/s', 'Gy/s', 'Gy/s', 'Gy/s']
 
