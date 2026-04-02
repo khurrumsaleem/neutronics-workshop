@@ -1,6 +1,6 @@
 # Install with pip
 
-This installation option supports Linux and has been tested most on Ubuntu.
+This installation option supports Linux. In theory the Python dependencies all work on Mac OS as well and with some adaptions to the commands it could work on Mac OS as well.
 
 You will need Python installed which comes pre installed on most Linux distributions.
 
