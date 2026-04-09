@@ -87,11 +87,11 @@ parts:
   - caption: CSG shutdown dose tallies
     chapters:
     - file: tasks/task_11_CSG_shut_down_dose_tallies/README
+    - file: tasks/task_11_CSG_shut_down_dose_tallies/1_R2S_cell_shut_down_dose_rate
+    - file: tasks/task_11_CSG_shut_down_dose_tallies/2_R2S_cell_mulitiple_puse_shutdown_dose_rate
+    - file: tasks/task_11_CSG_shut_down_dose_tallies/3_R2S_regularmesh_based_shutdown_dose_rate
     - file: tasks/task_11_CSG_shut_down_dose_tallies/4_D1S_regularmesh_shutdown_dose_rate
     - file: tasks/task_11_CSG_shut_down_dose_tallies/5_D1S_regularmesh_shutdown_dose_rate_different_source_terms
-      # TODO convert to notebooks
-      # task_11_CSG_shut_down_dose_tallies/1_cell_based_shut_down_dose_rate_example.py
-      # task_11_CSG_shut_down_dose_tallies/2_faster_mulitiple_puse_shut_down_dose_rate_example.py
   - caption: Detectors Examples
     chapters:
     - file: tasks/task_12_detectors_examples/README
