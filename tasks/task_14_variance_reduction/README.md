@@ -1,18 +1,14 @@
 # Task Introduction
 
-Currently OpenMC supports two types of variance reduction (survival biasing and weight windows).
-A detailed description of each method can be found in the [documentation](https://docs.openmc.org/en/stable/methods/neutron_physics.html?highlight=survival#variance-reduction-techniques).
+Variance reduction techniques are essential for efficiently simulating deep-penetration shielding problems where analogue Monte Carlo would require prohibitively many particles. In this task you will use OpenMC to apply survival biasing, weight windows and FW-CADIS to shielding and sphere problems.
 
-OpenMC also supports methods of generating weight windows including the [Magic Method and FW-CADIS](https://docs.openmc.org/en/stable/methods/variance_reduction.html?highlight=magic)
+A detailed description of each method can be found in the [OpenMC documentation](https://docs.openmc.org/en/stable/methods/neutron_physics.html?highlight=survival#variance-reduction-techniques). OpenMC also supports methods of generating weight windows including the [Magic Method and FW-CADIS](https://docs.openmc.org/en/stable/methods/variance_reduction.html?highlight=magic).
 
-The notebooks contain all the methods for completeness, however ff you just have time to learn one method then I would recommend the FW-CADIS approach.
+The examples cover all methods for completeness, however if you only have time to learn one method then the FW-CADIS approach is recommended.
 
-The workshop contains the following variance reduction examples:
+**Learning Outcomes**
 
-| Filename | variance reduction technique | geometry | mesh type |
-|---|---|---|---|
-| 1_shielded_room_survival_biasing.py | survival_biasing | shielded bunker | RegularMesh | Flux map | air space and concrete |
-| 2_shielded_room_single_ww.ipynb | weight windows | sphere | RegularMesh | air space and concrete |
-| 3_sphere_iterative_per_run_ww.py | weight windows | cube | RegularMesh | Water |
-| 4_sphere_iterative_per_batch_ww.py | weight windows | sphere | SphericalMesh | concrete |
-| 5_shielded_room_single_fw_cadis.py | survival_biasing | shielded bunker | RegularMesh | Flux map | air space and concrete |
+- Survival biasing prevents particles from being killed by absorption, instead reducing their weight, which improves statistics in deep-penetration problems.
+- Weight windows control particle weights across the geometry, splitting particles in important regions and killing them in unimportant regions.
+- Weight windows can be generated iteratively (per-run or per-batch) using the Magic method.
+- FW-CADIS (Forward-Weighted Consistent Adjoint Driven Importance Sampling) automates weight window generation using an adjoint flux calculation to optimise for a specific tally.

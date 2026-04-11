@@ -6,7 +6,7 @@ In this task you will simulate shutdown dose rates on CSG (Constructive Solid Ge
 
 The D1S method is the recommended approach. It folds decay photon production directly into a single neutron transport run and computes dose rates as a post-processing step, making it fast to vary the irradiation schedule without re-running the simulation.
 
-The R2S examples in this task (Python scripts) run a neutron transport simulation, perform material activation/depletion, construct gamma source terms from the activated materials, then run a separate photon transport simulation. These examples are planned to be improved and converted to notebooks in a future update.
+The R2S examples run a neutron transport simulation, perform material activation/depletion, construct gamma source terms from the activated materials, then run a separate photon transport simulation.
 
 **Learning Outcomes**
 
