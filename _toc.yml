@@ -132,6 +132,10 @@ parts:
     chapters:
     - file: tasks/task_18_CAD_mesh_fast_flux/README
     - file: tasks/task_18_CAD_mesh_fast_flux/1_simulate_fast_neutron_flux_on_cad
+  - caption: CAD neutron wall loading
+    chapters:
+    - file: tasks/task_19_CAD_neutron_wall_loading/README
+    - file: tasks/task_19_CAD_neutron_wall_loading/1_neutron_wall_loading_on_elliptical_torus
   - caption: CAD shutdown dose tallies
     chapters:
     - file: tasks/task_20_CAD_shut_down_dose_rate/README
