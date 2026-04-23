@@ -196,13 +196,7 @@ t, rates = results.get_reaction_rate(mat, 'Fe56', '(n,p)')
 # Keff is only meaningful for fission — ignore for fusion
 ```
 
-Plot helpers in `openmc_depletion_plotter`:
-
-```python
-from openmc_depletion_plotter import plot_activity, plot_isotope_buildup, plot_decay_heat
-plot_activity(results).show()
-plot_isotope_buildup(results, ['Co60', 'Mn54']).show()
-```
+Plot helpers in `openmc_depletion_plotter` — check the package README for the current function names; typical usage is `plot_atoms_vs_time(results, ...)` or similar.
 
 ## Shutdown dose rate
 
@@ -211,7 +205,7 @@ Depletion gives you the material composition after cooldown. To compute **dose r
 ## Common pitfalls
 
 - **Forgot `mat.volume`** → atom counts are zero, everything is wrong silently.
-- **Forgot `mat.depletable = True`** → material isn't deplete, results flat.
+- **Forgot `mat.depletable = True`** → material isn't depleted, results flat.
 - **`normalization_mode='energy-deposition'` on a fusion problem** → wrong. Use `'source-rate'`.
 - **Re-running without cleaning `depletion_results.h5`** → OpenMC usually overwrites cleanly, but some plotters cache.
 - **Chain file too ambitious** → `reduce_chain_level=3` or `5` trims to what's reachable from your starting materials and makes CRAM solves 10–100× faster.

@@ -72,7 +72,7 @@ dose.filters = [cell_filter, ef_n]
 dose.scores  = ['flux']
 ```
 
-Score is `flux`, not `current`. The `EnergyFunctionFilter` turns it into pSv·cm. Divide by the cell volume to get pSv per source particle per cm³.
+Score is `flux`, not `current`. The `EnergyFunctionFilter` turns it into pSv·cm³ per source particle (flux has units of cm/source, × pSv·cm² from the coefficients). Divide by the cell volume to get pSv per source particle.
 
 ## Mesh dose — spatial dose map
 

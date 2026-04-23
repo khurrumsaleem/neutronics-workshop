@@ -15,12 +15,12 @@ tbr.nuclides = ['Li6', 'Li7']     # optional — per-nuclide breakdown
 
 heating = openmc.Tally(name='heating')
 heating.filters = [openmc.CellFilter(fw_cell)]
-heating.scores  = ['heating']     # MeV per source particle
+heating.scores  = ['heating']     # eV per source particle (neutron + photon heating)
 
 tallies = openmc.Tallies([tbr, heating])
 ```
 
-Common fusion scores: `flux`, `heating`, `heating-local` (exclude photons if running neutron-only), `H3-production`, `damage-energy` (DPA precursor), `(n,2n)`, `(n,a)`, `(n,p)`, `(n,gamma)`, `absorption`.
+Common fusion scores: `flux`, `heating` (eV/source, total nuclear heating including secondaries — requires coupled n+γ transport), `heating-local` (eV/source, assumes secondary photons deposit locally — for neutron-only runs), `H3-production`, `damage-energy` (DPA precursor, eV), `(n,2n)`, `(n,a)`, `(n,p)`, `(n,gamma)`, `absorption`.
 
 ### 2. Mesh tally — spatial maps of flux / dose / damage
 
@@ -48,7 +48,7 @@ settings.output = {'tallies': False}
 ```python
 # 709-group VITAMIN-J structure is standard for fusion shielding
 from openmc.mgxs import GROUP_STRUCTURES
-energies = GROUP_STRUCTURES['VITAMIN-J-175']   # or 'LLNL-616', 'CCFE-709', 'TRIPOLI-315', etc.
+energies = GROUP_STRUCTURES['VITAMIN-J-175']   # or 'CCFE-709', 'UKAEA-1102', 'LLNL-616' (fusion-friendly options)
 
 spectrum = openmc.Tally(name='fw_spectrum')
 spectrum.filters = [

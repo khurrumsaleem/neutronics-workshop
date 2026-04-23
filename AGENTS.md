@@ -21,7 +21,7 @@ Topics like tritium breeding ratio (TBR), damage (DPA), neutron wall loading, an
 Before writing any OpenMC script, verify these two requirements:
 
 1. **OpenMC is installed.** If not, see `docs/agents/install-and-data.md`. The workshop installs via a custom wheel index (`--extra-index-url https://shimwell.github.io/wheels`) so that `openmc` comes pre-built with DAGMC support.
-2. **Nuclear data is available.** OpenMC needs `cross_sections.xml`. Depletion additionally needs a `chain_file`. Check for either the env var `OPENMC_CROSS_SECTIONS` or a `cross_sections.xml` under `~/nuclear_data/`. If neither exists, install `openmc_data` and run `download_nndc_chain` / `download_chain` — see `docs/agents/install-and-data.md`.
+2. **Nuclear data is available.** OpenMC needs `cross_sections.xml`. Depletion additionally needs a `chain_file`. Check for either the env var `OPENMC_CROSS_SECTIONS` or a `cross_sections.xml` under `~/nuclear_data/`. If neither exists, install `openmc_data` and run `download_chain` — see `docs/agents/install-and-data.md`.
 
 Every script should set these once at the top:
 

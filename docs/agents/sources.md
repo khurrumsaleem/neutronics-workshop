@@ -31,9 +31,10 @@ settings = openmc.Settings(
 openmc.stats.Point((x, y, z))
 
 # Ring source at major radius R on the z=0 midplane (approximate tokamak plasma)
+import math
 openmc.stats.CylindricalIndependent(
-    r=openmc.stats.Discrete([600.0], [1.0]),     # fixed radius
-    phi=openmc.stats.Uniform(0, 2*np.pi),
+    r=openmc.stats.Discrete([600.0], [1.0]),         # fixed radius in cm
+    phi=openmc.stats.Uniform(0, 2*math.pi),
     z=openmc.stats.Discrete([0.0], [1.0]),
     origin=(0.0, 0.0, 0.0),
 )
@@ -79,12 +80,15 @@ For realistic tokamak / spherical-tokamak plasma emission (Shafranov shift, temp
 ```python
 from openmc_plasma_source import tokamak_source
 
+# Units for major/minor/pedestal radius depend on the openmc_plasma_source version
+# — check the workshop task_04/3 notebook for the convention your installed version uses.
+# The values below are from task_04/3 and represent an ITER-like plasma.
 my_sources = tokamak_source(
     elongation=1.557,
     triangularity=0.270,
-    major_radius=906,                   # cm
-    minor_radius=292,                   # cm
-    pedestal_radius=0.8 * 292,
+    major_radius=9.06,
+    minor_radius=2.92258,
+    pedestal_radius=0.8 * 2.92258,
     ion_density_centre=1.09e20, ion_density_pedestal=1.09e20, ion_density_separatrix=3e19,
     ion_density_peaking_factor=1,
     ion_temperature_centre=45.9, ion_temperature_pedestal=6.09, ion_temperature_separatrix=0.1,

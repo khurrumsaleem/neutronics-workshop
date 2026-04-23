@@ -75,7 +75,7 @@ download_chain -l endf -r b8.0 -b SFR -d ~/nuclear_data -f chain-endf-b8.0.xml
 download_nndc -d ~/nuclear_data -r b8.0
 ```
 
-Available helper scripts (all installed as CLIs): `download_chain`, `download_endf`, `download_endf_chain`, `download_nndc`, `download_nndc_chain`, `download_tendl`, `download_jeff`.
+Available helpers vary by `openmc_data` version; `download_chain` and `download_endf_chain` are the two used by this workshop (see `postBuild` and the depletion notebooks). For the current full list, run `pip show -f openmc_data | grep bin/` or check the upstream repo.
 
 ### Option C — `openmc_data_downloader` (incremental / selective)
 
@@ -112,20 +112,21 @@ openmc.config['chain_file']     = Path.home() / 'nuclear_data' / 'chain-endf-b8.
 
 ```python
 import openmc
+import openmc.lib                          # importing this loads the compiled shared library
 print(openmc.__version__)
-print(openmc.config)                 # should show cross_sections path
-print(openmc.lib.MAX_COORD)          # confirms the C++ lib loaded
+print(openmc.config)                       # should show cross_sections path
+print('DAGMC enabled:', openmc.lib._dagmc_enabled())
 ```
 
-For DAGMC:
+For a DAGMC file:
 
 ```python
 u = openmc.DAGMCUniverse(filename='dagmc.h5m')
-print(u.material_names)              # should list the material tags
+print(u.material_names)                    # should list the material tags
 ```
 
 ## Common install failures
 
-- **`ModuleNotFoundError: No module named 'openmc.lib'`** — the wheel didn't install cleanly. Re-install with `--force-reinstall --no-cache-dir --extra-index-url https://shimwell.github.io/wheels openmc`.
+- **`OSError: libopenmc.so: cannot open shared object file`** on `import openmc.lib` — the wheel didn't install cleanly. Re-install with `--force-reinstall --no-cache-dir --extra-index-url https://shimwell.github.io/wheels openmc`.
 - **`Cross section <nuclide> not found in library`** — either the library doesn't contain that nuclide (use `openmc_data_downloader` to fetch it) or `cross_sections.xml` points at a library that excludes it. ENDF/B-VIII.0 covers most fusion-relevant isotopes; TENDL-2019 has broader coverage for activation products.
 - **Depletion error `no chain file set`** — set `openmc.config['chain_file']` before calling `mat.deplete(...)` or creating a `CoupledOperator`.
