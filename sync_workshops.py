@@ -70,6 +70,7 @@ WORKSHOPS = {
         ('task_09_CSG_instantaneous_dose_tallies/5_mesh_dose_from_neutrons.ipynb', 'task_16.ipynb'),
         ('task_14_variance_reduction/5_shielded_room_fw_cadis.ipynb', 'task_17.ipynb'),
         ('task_16_converting_CAD_geometry_to_DAGMC/1_converting_cad_files.ipynb', 'task_18.ipynb'),
+        ('task_16_converting_CAD_geometry_to_DAGMC/step_cad_file_for_conversion.step', 'step_cad_file_for_conversion.step'),
         ('task_16_converting_CAD_geometry_to_DAGMC/2_converting_cad_in_memory.ipynb', 'task_19.ipynb'),
         ('task_17_using_DAGMC_models_in_openmc/1_cad_model_simulation_minimal.ipynb', 'task_20.ipynb'),
         ('task_18_CAD_mesh_fast_flux/1_simulate_fast_neutron_flux_on_cad.ipynb', 'task_21.ipynb'),
