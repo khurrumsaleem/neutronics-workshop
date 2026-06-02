@@ -123,27 +123,6 @@ RUN echo ${HOME}
 # Copy over the local repository files
 COPY tasks ${HOME}/tasks/
 
-RUN mkdir -p ${HOME}/tasks/half-day-workshop
-
-RUN cp ${HOME}/tasks/task_01_cross_sections/1_isotope_xs_plot.ipynb ${HOME}/tasks/half-day-workshop/task_01_isotope_xs_plot.ipynb  && \
-    cp ${HOME}/tasks/task_01_cross_sections/2_element_xs_plot.ipynb ${HOME}/tasks/half-day-workshop/task_02_element_xs_plot.ipynb  && \
-    cp ${HOME}/tasks/task_01_cross_sections/3_material_xs_plot.ipynb ${HOME}/tasks/half-day-workshop/task_03_material_xs_plot.ipynb  && \
-    cp ${HOME}/tasks/task_02_making_materials/1_example_materials_from_isotopes.ipynb ${HOME}/tasks/half-day-workshop/task_04_example_materials_from_isotopes.ipynb && \
-    cp ${HOME}/tasks/task_02_making_materials/2_example_materials_from_elements.ipynb ${HOME}/tasks/half-day-workshop/task_05_example_materials_from_elements.ipynb && \
-    cp ${HOME}/tasks/task_03_making_CSG_geometry/1_simple_csg_geometry.ipynb ${HOME}/tasks/half-day-workshop/task_06_simple_csg_geometry.ipynb && \
-    cp ${HOME}/tasks/task_04_make_sources/1_point_source_plots.ipynb ${HOME}/tasks/half-day-workshop/task_07_point_source_plots.ipynb && \
-    cp ${HOME}/tasks/task_04_make_sources/2_ring_source.ipynb ${HOME}/tasks/half-day-workshop/task_08_ring_source.ipynb && \
-    cp ${HOME}/tasks/task_04_make_sources/3_plasma_source_plots.ipynb ${HOME}/tasks/half-day-workshop/task_09_plasma_source_plots.ipynb && \
-    cp ${HOME}/tasks/task_05_CSG_cell_tally_TBR/1_example_tritium_production.ipynb ${HOME}/tasks/half-day-workshop/task_10_example_tritium_production.ipynb && \
-    cp ${HOME}/tasks/task_06_CSG_cell_tally_DPA/1_find_dpa.ipynb ${HOME}/tasks/half-day-workshop/task_11_find_dpa.ipynb && \
-    cp ${HOME}/tasks/task_07_CSG_cell_tally_spectra/2_example_neutron_spectra_on_cell.ipynb ${HOME}/tasks/half-day-workshop/task_12_example_neutron_spectra_on_cell.ipynb && \
-    cp ${HOME}/tasks/task_07_CSG_cell_tally_spectra/4_example_photon_spectra.ipynb ${HOME}/tasks/half-day-workshop/task_13_example_photon_spectra.ipynb && \
-    cp ${HOME}/tasks/task_08_CSG_mesh_tally/1_example_2d_regular_mesh_tallies.ipynb ${HOME}/tasks/half-day-workshop/task_14_example_2d_regular_mesh_tallies.ipynb && \
-    cp ${HOME}/tasks/task_14_variance_reduction/2_shielded_room_single_ww.ipynb ${HOME}/tasks/half-day-workshop/task_15_example_variane_shielded_room_ww_single_iteration.ipynb && \
-    cp ${HOME}/tasks/task_14_variance_reduction/3_sphere_iterative_per_run_ww.ipynb ${HOME}/tasks/half-day-workshop/task_16_example_variance_reduction_sphere_ww_multiple_iterations.ipynb && \
-    cp ${HOME}/tasks/task_10_activation_transmutation_depletion/3_full_pulse_schedule.ipynb ${HOME}/tasks/half-day-workshop/task_17_full_pulse_schedule.ipynb && \
-    cp ${HOME}/tasks/task_21_design_task/1_optimal_design.ipynb ${HOME}/tasks/half-day-workshop/task_18_optimal_design.ipynb
-
 RUN chown -R ${NB_UID}:${NB_UID} /root
 RUN chown -R ${NB_UID}:${NB_UID} ${HOME}/tasks
 
