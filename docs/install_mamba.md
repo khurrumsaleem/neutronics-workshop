@@ -19,7 +19,7 @@ Once you have a version of Conda installed then proceed with cloning or [downloa
 
 ```bash
 sudo apt-get install git
-git clone https://github.com/fusion-energy/neutronics-workshop.git
+git clone --depth 1 --branch main https://github.com/fusion-energy/neutronics-workshop.git
 cd neutronics-workshop
 ```
 
@@ -43,7 +43,7 @@ bash postBuild
 Clone or otherwise [download](https://github.com/fusion-energy/neutronics-workshop/archive/refs/heads/main.zip) the repository and cd into the repository directory.
 
 ```bash
-git clone https://github.com/fusion-energy/neutronics-workshop.git
+git clone --depth 1 --branch main https://github.com/fusion-energy/neutronics-workshop.git
 cd neutronics-workshop
 ```
 
