@@ -1,4 +1,4 @@
-# Install with pip Linux
+# Install with pip
 
 This installation option supports Linux.
 
