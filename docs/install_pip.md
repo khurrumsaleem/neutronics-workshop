@@ -1,5 +1,7 @@
 # Install with pip
 
+## Install with pip on Linux
+
 This installation option supports Linux.
 
 You will need Python installed which comes pre installed on most Linux distributions.
@@ -53,7 +55,7 @@ jupyter lab
 Then navigate to the task that you want to run in the tasks folder.
 
 
-# Install with pip Mac OS
+## Install with pip on Mac OS
 
 This installation option supports Mac OS.
 
