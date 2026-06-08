@@ -6,6 +6,16 @@ This installation option supports Linux.
 
 You will need Python installed which comes pre installed on most Linux distributions.
 
+````{admonition} WSL2 / minimal Linux users — extra system dependencies
+:class: tip, dropdown
+
+Most desktop Linux distributions already include the system libraries needed to run the simulations and graphics. However minimal environments such as WSL2 images may be missing some of them. If you hit missing library errors, install them with:
+
+```bash
+sudo apt-get install --yes git wget mpich libmpich12 libhdf5-310 libhdf5-mpich-310 hdf5-tools libnetcdf22 libtbb12 libglfw3 libglx0 libgl1 libglut3.12 libosmesa6 libgles2 libxft2 libxcursor1 libxinerama1 xvfb
+```
+````
+
 In addition to install with pip you will need pip installed.
 ```
 sudo apt-get --yes install python3-pip
