@@ -1,6 +1,9 @@
 format: jb-book
 root: docs/index
 parts:
+  - caption: Workshop slides
+    chapters:
+    - file: docs/workshop_slides
   - caption: Installation options
     chapters:
     - file: docs/install_pip
