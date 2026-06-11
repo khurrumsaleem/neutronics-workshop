@@ -95,14 +95,14 @@ my_sources = tokamak_source(
     ion_temperature_peaking_factor=8.06, ion_temperature_beta=6,
     shafranov_factor=0.44789,
     mode='H',
-    sample_size=500,                    # number of sub-sources in the list
-    angles=(0, 2*3.14159),              # toroidal sector in radians
+    mesh_resolution=(100, 1, 100),      # mesh bins in (r, phi, z)
+    start_angle=0, rotation_angle=2*3.14159,  # toroidal start angle and extent in radians
 )
 
-settings.source = my_sources            # list of IndependentSource objects — OpenMC handles this natively
+settings.source = my_sources            # an openmc.MeshSource — OpenMC handles this natively
 ```
 
-Returns a list; `settings.source` accepts either a single `IndependentSource` or a list of them. Each sub-source represents a volumetric emission cell within the plasma.
+Returns an `openmc.MeshSource` backed by a `CylindricalMesh`; assign it directly to `settings.source` (a single source or a list both work). Each mesh voxel carries a strength proportional to the local neutron emission.
 
 Other useful helpers in the same package: `tokamak_source`, `spherical_tokamak_source`, `fusion_ring_source`, `fusion_point_source`.
 
