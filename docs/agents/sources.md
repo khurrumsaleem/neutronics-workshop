@@ -95,7 +95,7 @@ my_sources = tokamak_source(
     ion_temperature_peaking_factor=8.06, ion_temperature_beta=6,
     shafranov_factor=0.44789,
     mode='H',
-    mesh_resolution=(100, 1, 100),      # mesh bins in (r, phi, z)
+    mesh_resolution=(100, 100),         # mesh bins in (r, z)
     start_angle=0, rotation_angle=2*3.14159,  # toroidal start angle and extent in radians
 )
 
