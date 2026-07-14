@@ -84,7 +84,13 @@ jobs:
       #   uses: mxschmitt/action-tmate@v3
       - name: Build the book
         run: |
-          jupyter nbconvert --to notebook --execute --inplace tasks/*/*.ipynb
+          # Execute all task notebooks except 4_sphere_iterative_per_batch_ww.ipynb.
+          # That notebook hangs on the CI OpenMC build (the iterative MAGIC weight
+          # windows request excessive particle splitting), which was causing this
+          # job to hit the 6 hour limit and get cancelled before the book deployed.
+          find tasks -mindepth 2 -maxdepth 2 -name '*.ipynb' \
+            ! -path 'tasks/task_14_variance_reduction/4_sphere_iterative_per_batch_ww.ipynb' \
+            -print0 | xargs -0 -r jupyter nbconvert --to notebook --execute --inplace
           pip install jupyter-book==1.0.4
           jupyter-book build .
 
